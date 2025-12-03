@@ -1,0 +1,78 @@
+[gd_scene load_steps=5 format=3 uid="uid://cmxyeoyvhvxyr"]
+
+[ext_resource type="Script" uid="uid://qrnp6s1wmodu" path="res://levels/FakeWin.cs" id="1_s4ly0"]
+
+[sub_resource type="Animation" id="Animation_s4ly0"]
+resource_name = "MessageMoving"
+length = 3.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Message:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 2.3000002, 2.6000001, 2.9, 3.2, 3.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": ["", "Just", "Just kidding!", "Just kidding!
+
+We", "Just kidding!
+
+We aren't", "Just kidding!
+
+We aren't done", "Just kidding!
+
+We aren't done yet"]
+}
+
+[sub_resource type="Animation" id="Animation_elabd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Message:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Just"]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jpx3t"]
+_data = {
+&"MessageMoving": SubResource("Animation_s4ly0"),
+&"RESET": SubResource("Animation_elabd")
+}
+
+[node name="FakeWin" type="Node2D" node_paths=PackedStringArray("WinMessage")]
+script = ExtResource("1_s4ly0")
+WinMessage = NodePath("CanvasLayer/WinMessage")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="WinMessage" type="Label" parent="CanvasLayer"]
+offset_left = 192.0
+offset_top = 64.0
+offset_right = 404.0
+offset_bottom = 87.0
+text = "You won with 10000 points!"
+horizontal_alignment = 1
+
+[node name="Message" type="Label" parent="CanvasLayer"]
+modulate = Color(1, 0.07058824, 0, 1)
+offset_left = 224.0
+offset_top = 256.0
+offset_right = 375.0
+offset_bottom = 331.0
+text = "Just"
+horizontal_alignment = 1
+
+[node name="MessageMovement" type="AnimationPlayer" parent="CanvasLayer/Message"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_jpx3t")
+}
+autoplay = "MessageMoving"

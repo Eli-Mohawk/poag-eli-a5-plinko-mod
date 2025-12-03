@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://exf8ib5q4vpc"]
+
+[ext_resource type="Script" uid="uid://dl8apqm02kpsg" path="res://levels/PongLevel.cs" id="1_nv0ql"]
+[ext_resource type="PackedScene" uid="uid://bbp51xsj5honi" path="res://prefabs/pong_ball/ball.tscn" id="2_m50nk"]
+[ext_resource type="PackedScene" uid="uid://cd5e581jblv8l" path="res://prefabs/pong_player/collider.tscn" id="2_nv0ql"]
+
+[node name="PongLevel" type="Node2D"]
+script = ExtResource("1_nv0ql")
+
+[node name="Ball" parent="." instance=ExtResource("2_m50nk")]
+position = Vector2(288, 424)
+
+[node name="PlayerCollider" type="Node2D" parent="."]
+position = Vector2(296, 768)
+
+[node name="Player" parent="PlayerCollider" instance=ExtResource("2_nv0ql")]
+
+[node name="EnemyCollider" type="Node2D" parent="."]
+position = Vector2(296, 88)
+
+[node name="Enemy" parent="EnemyCollider" instance=ExtResource("2_nv0ql")]

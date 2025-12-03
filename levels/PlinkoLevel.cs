@@ -5,7 +5,7 @@ using System.ComponentModel;
 public partial class PlinkoLevel : Node2D
 {
 	// this is the value of the current round's score
-	public int Score = 0;
+	public static int Score = 0;
 
 	[Export]
 	public Label ScoreValue;
@@ -28,8 +28,8 @@ public partial class PlinkoLevel : Node2D
 
 	// internal variables
     bool EnableRespawn = false;
+	bool GameWon = false;
 	Vector2 InitialPosition;
-
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -54,6 +54,7 @@ public partial class PlinkoLevel : Node2D
 
 			EnableRespawn = false;
         }
+		WinCheck();
     }
 
 	void SpawnNewPlayer()
@@ -82,4 +83,11 @@ public partial class PlinkoLevel : Node2D
 		//SpawnNewPlayer();
 		//CallDeferred("SpawnNewPlayer");
 	}
+
+	public void WinCheck()
+	{
+        if (Score >= 10000) GameWon = true;
+        
+        if (GameWon) GetTree().ChangeSceneToFile("res://levels/fake_win.tscn");
+    }
 }

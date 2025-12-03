@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://bbp51xsj5honi"]
+
+[ext_resource type="Script" uid="uid://12bvjct834kv" path="res://prefabs/pong_ball/Ball.cs" id="1_34i5u"]
+[ext_resource type="Script" uid="uid://b375m4oqxfkxv" path="res://addons/2d_shapes/shapes/Ellipse.gd" id="1_gbrqf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dade1"]
+
+[node name="Ball" type="RigidBody2D"]
+script = ExtResource("1_34i5u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_dade1")
+
+[node name="Ellipse" type="Node2D" parent="."]
+script = ExtResource("1_gbrqf")
+size = Vector2(20, 20)
+circle = true
+metadata/_custom_type_script = "uid://b375m4oqxfkxv"
