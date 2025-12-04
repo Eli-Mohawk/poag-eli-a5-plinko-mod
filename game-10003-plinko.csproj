@@ -5,4 +5,7 @@
     <EnableDynamicLoading>true</EnableDynamicLoading>
     <RootNamespace>game10003plinko</RootNamespace>
   </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="prefabs\pong\score_zone\" />
+  </ItemGroup>
 </Project>

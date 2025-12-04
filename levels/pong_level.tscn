@@ -1,21 +1,54 @@
-[gd_scene load_steps=4 format=3 uid="uid://exf8ib5q4vpc"]
+[gd_scene load_steps=8 format=3 uid="uid://exf8ib5q4vpc"]
 
 [ext_resource type="Script" uid="uid://dl8apqm02kpsg" path="res://levels/PongLevel.cs" id="1_nv0ql"]
-[ext_resource type="PackedScene" uid="uid://bbp51xsj5honi" path="res://prefabs/pong_ball/ball.tscn" id="2_m50nk"]
-[ext_resource type="PackedScene" uid="uid://cd5e581jblv8l" path="res://prefabs/pong_player/collider.tscn" id="2_nv0ql"]
+[ext_resource type="PackedScene" uid="uid://dub57jkba2kg2" path="res://prefabs/pong/pong_player/player_collider.tscn" id="4_7a8sy"]
+[ext_resource type="PackedScene" uid="uid://cmg3xvnrf5ydn" path="res://prefabs/pong/walls/side_wall.tscn" id="4_dade1"]
+[ext_resource type="PackedScene" uid="uid://dco2gtokjfbkq" path="res://prefabs/pong/pong_ball/pong_ball.tscn" id="5_7a8sy"]
+[ext_resource type="Script" uid="uid://b1o48ttgx6ouh" path="res://prefabs/pong/pong_ball/PongBall.cs" id="6_4vq2l"]
+[ext_resource type="PackedScene" uid="uid://bccnynnxfm1kq" path="res://prefabs/pong/score_zone/score.tscn" id="6_jlipp"]
+[ext_resource type="Script" uid="uid://url8tx4p4nwh" path="res://prefabs/pong/score_zone/ScoreP.cs" id="7_dlpal"]
 
 [node name="PongLevel" type="Node2D"]
 script = ExtResource("1_nv0ql")
 
-[node name="Ball" parent="." instance=ExtResource("2_m50nk")]
-position = Vector2(288, 424)
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="PlayerCollider" type="Node2D" parent="."]
-position = Vector2(296, 768)
+[node name="Score" type="Label" parent="CanvasLayer"]
+offset_left = 24.0
+offset_top = 16.0
+offset_right = 85.0
+offset_bottom = 39.0
+text = "Current score: 0 - 0"
 
-[node name="Player" parent="PlayerCollider" instance=ExtResource("2_nv0ql")]
+[node name="RespawnLbl" type="Label" parent="CanvasLayer"]
+offset_left = 416.0
+offset_top = 16.0
+offset_right = 599.0
+offset_bottom = 39.0
+text = "Press space to continue"
 
-[node name="EnemyCollider" type="Node2D" parent="."]
-position = Vector2(296, 88)
+[node name="Walls" type="Node2D" parent="."]
 
-[node name="Enemy" parent="EnemyCollider" instance=ExtResource("2_nv0ql")]
+[node name="SideWall" parent="Walls" instance=ExtResource("4_dade1")]
+position = Vector2(0, 424)
+
+[node name="SideWall2" parent="Walls" instance=ExtResource("4_dade1")]
+position = Vector2(624, 424)
+
+[node name="Player" type="Node2D" parent="."]
+
+[node name="PlayerCollider" parent="Player" instance=ExtResource("4_7a8sy")]
+position = Vector2(312, 784)
+
+[node name="Ball" type="Node2D" parent="."]
+
+[node name="Pong_Ball" parent="Ball" instance=ExtResource("5_7a8sy")]
+position = Vector2(296, 400)
+script = ExtResource("6_4vq2l")
+
+[node name="ScoreZone" type="Node2D" parent="."]
+
+[node name="Score" parent="ScoreZone" instance=ExtResource("6_jlipp")]
+script = ExtResource("7_dlpal")
+
+[node name="Score2" parent="ScoreZone" instance=ExtResource("6_jlipp")]

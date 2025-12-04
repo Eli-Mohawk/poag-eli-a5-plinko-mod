@@ -1,19 +1,15 @@
 using Godot;
 using System;
 
-public partial class Collider : RigidBody2D
+public partial class PongBall : RigidBody2D
 {
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		Freeze = true;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-        Vector2 newPosition = Position;
-        newPosition.X = GetViewport().GetMousePosition().X;
-        Position = newPosition;
-    }
+	}
 }

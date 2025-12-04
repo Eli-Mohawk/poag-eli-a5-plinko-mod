@@ -28,7 +28,7 @@ public partial class PlinkoLevel : Node2D
 
 	// internal variables
     bool EnableRespawn = false;
-	bool GameWon = false;
+	bool gameWon = false;
 	Vector2 InitialPosition;
 
 	// Called when the node enters the scene tree for the first time.
@@ -86,8 +86,8 @@ public partial class PlinkoLevel : Node2D
 
 	public void WinCheck()
 	{
-        if (Score >= 10000) GameWon = true;
+        if (Score >= 10000) gameWon = true;
         
-        if (GameWon) GetTree().ChangeSceneToFile("res://levels/fake_win.tscn");
+        if (gameWon) GetTree().ChangeSceneToFile("res://levels/fake_win.tscn");
     }
 }
